@@ -1,0 +1,29 @@
+
+format_version: 10                
+pipelines: 
+  tools-infra-create:                                            
+    group: Terraform
+    label_template: "${COUNT}"
+    materials:
+      tools:
+        git: https://github.com/B58-CloudDevOps/tools-automation.git
+        branch: main
+        auto_update: true 
+        shallow_clone: true
+        display_order: -1
+        lock_behavior: none
+    secure_variables:
+        ssh_pwd: "AES:2OIP4os11Nz8gJ+jtzoUMg==:9RKApCuI7ST7rHEU5UsKuA=="
+        vault_token: "AES:0MnF+owJSEFkTnSRpoRm3Q==:XnoIrHIhEi1FmIt2UFmPY8rf+H03P2Pv7VE7SRt4Zus="
+    environment_variables:
+        action: apply 
+    stages:                                       
+      - infra:                                       
+          fetch_materials: true 
+          keep_artifacts: false
+          clean_workspace: false
+          jobs:
+            terraform:
+              tasks:
+                - exec: { command: bash, arguments: ["init.sh"] }
+   
