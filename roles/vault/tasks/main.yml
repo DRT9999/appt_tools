@@ -1,18 +1,20 @@
-#Ansible
+# sudo yum install -y yum-utils
+# sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+# sudo yum -y install vault
 
-- name: config name to Server vault
-  ansible.builtin.shell: set-hostname vault
+- name: Configuring Host name 
+  ansible.builtin.shell: set-hostname {{tool_name}}
 
-- name: config yum for Hashicorp vault
+- name: Configuring YUM repo for Hashicorp vault 
   ansible.builtin.shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 
-- name: install vault
+- name: Installing Vault 
   ansible.builtin.dnf:
     name: vault
     state: present
 
-- name: ReStart vault service
-  ansible.builtin.systemd:
-    name: vault
+- name: Restarting Vault
+  ansible.builtin.systemd_service:
+    name: vault 
     state: restarted
-    enabled: yes 
+    enabled: true
