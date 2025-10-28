@@ -1,0 +1,19 @@
+format_version: 10                # pipeline version from gocd, based on this options would vary 
+pipelines: 
+  backend:                                             # name of the pipeline job that will be showing on UI
+    group: App-Deployments
+    label_template: "${COUNT}"
+    materials:
+      mysql-code:
+        git: https://github.com/B58-CloudDevOps/ansible.git
+        branch: main
+        auto_update: true 
+        shallow_clone: true
+        display_order: -1
+        lock_behavior: none
+    secure_variables:
+        SSH_PSW: "AES:2OIP4os11Nz8gJ+jtzoUMg==:9RKApCuI7ST7rHEU5UsKuA=="
+        vault_token: "AES:0MnF+owJSEFkTnSRpoRm3Q==:XnoIrHIhEi1FmIt2UFmPY8rf+H03P2Pv7VE7SRt4Zus="
+    environment_variables:
+        COMPONENT: backend
+    template: App-Deployment-Template
