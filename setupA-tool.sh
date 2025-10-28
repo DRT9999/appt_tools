@@ -1,0 +1,1 @@
+ansible-playbook -i ${tool_name}.exp.in, -e ansible_user=ec2-user -e ansible_password=${ssh_pwd} -e tool_name=${tool_name} -e pwd=ExpenseApp@1 setup-tool.yml
