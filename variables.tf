@@ -1,6 +1,6 @@
 #Tool for all 
 
-variable "tool" {
+variable "tools" {
     default = {
         vault  ={
             name = "vault"

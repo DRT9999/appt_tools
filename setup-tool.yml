@@ -1,4 +1,4 @@
-- name: Configuging tool App
+- name: Configuging tools
   become: true
   hosts: all #"{{COMP}}"
   roles:
